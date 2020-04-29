@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word game</title>
     <style>
         body {
@@ -11,17 +10,17 @@
         form {
             font-size: 1.5em;
         }
-        edition{
+        .edition{
             color:blue;
             font-size: 0.8em;
         }
         .scrambled, input, button {
-            font-family:monospace;
+            font-family: monospace;
             font-size: 2em;
         }
         /* Hides text, this way it can be used as a substitute text file to store the wordlist in*/
         #wordlist{
-            display:none;
+            display: none;
         }
         #score{
             color: rgb(82, 245, 0);
@@ -96,7 +95,7 @@
 
     //Loads in word list from hidden html
     //used as a subtitute text file
-    var wordList = $("#wordlist").text().match(/b(/w+)/b/g);
+    var wordList = $("#wordlist").text  ().match(/b(/w+)/b/g);
     
     //Returns a random word from the wordList
     randomWord = function(){
@@ -110,7 +109,7 @@
     //Help function to change letters
     //in a string
     //http://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript
-    String.prototype.replaceAt=function(index, character)
+    String.prototype.replaceAt=function   (index, character)
     {
         return this.substr(0, index) + character + this.substr(index+character.length);
 
@@ -140,12 +139,13 @@
             word = word.replaceAt(m, t)
         }
         return word;
+    };
         //Sets a new scrambled word
         //return original word, so we can check
         //if a valid answer is given.
         SetScrambledWord = function ()
         {
-            $word = $("#joke-form").find("[class =scrambled]");
+            $word =   $("#joke-form").find("[class =scrambled]");
             var newWord = randomWord();
             var scrambledWord = Scramble(newWord);
             $word.text(scrambledWord);
@@ -156,10 +156,10 @@
 
         GetScore = function()
         {
-            return parseInt($score = $("#joke-form").find("[id=score]").text().match(/b(/w+)/b/g)[1] )
+            return parseInt($score = $("#joke-form").find("[id=score]"  ).text().match(/b(/w+)/b/g)[1] )
         };
         SetScore = function(score){
-            $("#joke-form").find("[id=score]").html("<br> <br> score: " + score);
+            $("#joke-form").find("[id=score]"  ).html("<br> <br> score: " + score);
         }
         var PlaySound = function(score){
             if(score % 10 !== 0)
